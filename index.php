@@ -12,136 +12,11 @@ organizzate il progetto come visto stamattina a lezione usando varie sottocartel
 define('ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
 
-
-class Product extends Product_type
-{
-    public $category;
+require ROOT . DS . 'models' . DS . 'Product.php';
+require ROOT . DS . 'models' . DS . 'Animal.php';
 
 
 
-    public function __construct($_category)
-    {
-        $this->category = $_category;
-    }
-}
-
-$categories = [
-    $cane = new Product('Cane'),
-    $gatto = new Product('Gatto'),
-];
-
-
-
-/* da sistemare!! */
-
-$cane->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova', 16.99));
-$cane->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-$cane->setLeash('cibo umido', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-$cane->setToy('cibo umido', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-$cane->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova', 16.99));
-$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-$gatto->setLeash('cibo umido', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-$gatto->setToy('cibo umido', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-$gatto->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
-
-
-
-
-class Product_type
-{
-
-
-    public $food = [];
-    public $toy = [];
-    public $leash = [];
-    public $kennel_mats = [];
-
-
-
-
-
-
-    public function setFood($food_type, $weigth, Item $item)
-    {
-        $foodValue = [
-            'food_type' => $food_type,
-            'weigth' => $weigth
-        ];
-        $food_info = $item->productArray;
-
-        $arrayFood = array_merge($food_info, $foodValue);
-
-        array_push($this->food, $arrayFood);
-    }
-
-    public function setToy($toy_type, Item $item)
-    {
-
-        $toyValue = ['toy_type' => $toy_type];
-        $toy_info = $item->productArray;
-
-        $arrayToy = array_merge($toy_info, $toyValue);
-
-        array_push($this->toy, $arrayToy);
-    }
-
-    public function setLeash($leash_size, $leash_color, Item $item)
-    {
-
-        $leashValue = [
-            'leash_size' => $leash_size,
-            'leash_color' => $leash_color
-        ];
-        $leash_info = $item->productArray;
-
-        $arrayLeash = array_merge($leash_info, $leashValue);
-
-        array_push($this->leash, $arrayLeash);
-    }
-
-    public function setKennel_Mats($kennel_dimension, $kennel_use, $kennel_color, Item $item)
-    {
-
-
-        $kennelValue = [
-            'kennel_dimension' => $kennel_dimension,
-            'kennel_use' => $kennel_use,
-            'kennel_color' => $kennel_color
-        ];
-        $kennel_info = $item->productArray;
-
-        $arrayKennel = array_merge($kennel_info, $kennelValue);
-
-        array_push($this->kennel_mats, $arrayKennel);
-    }
-}
-
-class Item
-{
-    public $productArray;
-
-
-    public function __construct($_cover, $_name, $_description, $_category, $_quantity, $_brand, $_price)
-    {
-
-
-        $this->productArray = [
-            'cover' => $_cover,
-            'name' => $_name,
-            'description' => $_description,
-            'category' => $_category,
-            'quantity' => $_quantity,
-            'brand' => $_brand,
-            'price' => $_price,
-        ];
-    }
-}
 
 
 ?>
@@ -168,125 +43,16 @@ class Item
 
             <?php foreach ($categories as $category) : ?>
                 <section class="animal ">
-                    <h3><?= $category->category ?></h3>
+                    <h3>Tipologia : <?= $category->category ?></h3>
 
 
-                    <section id="food">
-                        <h4>Food</h4>
+                    <?php require ROOT . DS . 'layout' . DS . 'Food.php'; ?>
 
-                        <div class="eb_cards row gap-2">
+                    <?php require ROOT . DS . 'layout' . DS . 'Toys.php'; ?>
 
-                            <?php foreach ($category->food as $value) : ?>
+                    <?php require ROOT . DS . 'layout' . DS . 'Leash.php'; ?>
 
-                                <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $value['name'] ?></h5>
-                                        <p class="card-text">
-                                            <?= $value['description'] ?>
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><?= $value['category'] ?></li>
-                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
-                                        <li class="list-group-item"><?= $value['brand'] ?></li>
-                                        <li class="list-group-item"><?= $value['price'] ?></li>
-                                        <li class="list-group-item"><?= $value['food_type'] ?></li>
-                                        <li class="list-group-item"><?= $value['weigth'] ?></li>
-
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-
-                    <section id="toy">
-                        <h4>toy</h4>
-
-                        <div class="eb_cards row gap-2">
-
-                            <?php foreach ($category->toy as $value) : ?>
-
-                                <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $value['name'] ?></h5>
-                                        <p class="card-text">
-                                            <?= $value['description'] ?>
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><?= $value['category'] ?></li>
-                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
-                                        <li class="list-group-item"><?= $value['brand'] ?></li>
-                                        <li class="list-group-item"><?= $value['price'] ?></li>
-                                        <li class="list-group-item"><?= $value['toy_type'] ?></li>
-
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-
-                    <section id="Leash">
-                        <h4>Leash</h4>
-
-                        <div class="eb_cards row gap-2">
-
-                            <?php foreach ($category->leash as $value) : ?>
-
-                                <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $value['name'] ?></h5>
-                                        <p class="card-text">
-                                            <?= $value['description'] ?>
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><?= $value['category'] ?></li>
-                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
-                                        <li class="list-group-item"><?= $value['brand'] ?></li>
-                                        <li class="list-group-item"><?= $value['price'] ?></li>
-                                        <li class="list-group-item"><?= $value['leash_size'] ?></li>
-                                        <li class="list-group-item"><?= $value['leash_color'] ?></li>
-
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-
-
-                    <section id="kennel_mats">
-                        <h4>kennel_mats</h4>
-
-                        <div class="eb_cards row gap-2">
-
-                            <?php foreach ($category->kennel_mats as $value) : ?>
-
-                                <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $value['name'] ?></h5>
-                                        <p class="card-text">
-                                            <?= $value['description'] ?>
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><?= $value['category'] ?></li>
-                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
-                                        <li class="list-group-item"><?= $value['brand'] ?></li>
-                                        <li class="list-group-item"><?= $value['price'] ?></li>
-                                        <li class="list-group-item"><?= $value['kennel_dimension'] ?></li>
-                                        <li class="list-group-item"><?= $value['kennel_use'] ?></li>
-                                        <li class="list-group-item"><?= $value['kennel_color'] ?></li>
-
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
+                    <?php require ROOT . DS . 'layout' . DS . 'Kennel_Mats.php'; ?>
 
                 </section>
 
