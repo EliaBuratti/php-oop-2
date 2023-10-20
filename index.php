@@ -7,6 +7,12 @@ Stampiamo delle card contenenti i dettagli dei prodotti, come immagine, titolo, 
 Bonus (non opzionale):
 organizzate il progetto come visto stamattina a lezione usando varie sottocartelle per inserire classi, layout e dati. */
 
+
+
+define('ROOT', __DIR__);
+define('DS', DIRECTORY_SEPARATOR);
+
+
 class Product extends Product_type
 {
     public $category;
@@ -28,21 +34,21 @@ $categories = [
 
 /* da sistemare!! */
 
-$cane->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova'));
-$cane->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$cane->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova', 16.99));
+$cane->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
-$cane->setLeash('cibo umido', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
-$cane->setToy('cibo umido', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$cane->setLeash('cibo umido', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
+$cane->setToy('cibo umido', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
-$cane->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$cane->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
-$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova'));
-$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova', 16.99));
+$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
-$gatto->setLeash('cibo umido', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
-$gatto->setToy('cibo umido', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$gatto->setLeash('cibo umido', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
+$gatto->setToy('cibo umido', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
-$gatto->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$gatto->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/300/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova', 16.99));
 
 
 
@@ -121,7 +127,7 @@ class Item
     public $productArray;
 
 
-    public function __construct($_cover, $_name, $_description, $_category, $_quantity, $_brand)
+    public function __construct($_cover, $_name, $_description, $_category, $_quantity, $_brand, $_price)
     {
 
 
@@ -131,7 +137,8 @@ class Item
             'description' => $_description,
             'category' => $_category,
             'quantity' => $_quantity,
-            'brand' => $_brand
+            'brand' => $_brand,
+            'price' => $_price,
         ];
     }
 }
@@ -172,20 +179,22 @@ class Item
                             <?php foreach ($category->food as $value) : ?>
 
                                 <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"></h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 class="card-title"><?= $value['name'] ?></h5>
+                                        <p class="card-text">
+                                            <?= $value['description'] ?>
+                                        </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">An item</li>
-                                        <li class="list-group-item">A second item</li>
-                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item"><?= $value['category'] ?></li>
+                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
+                                        <li class="list-group-item"><?= $value['brand'] ?></li>
+                                        <li class="list-group-item"><?= $value['price'] ?></li>
+                                        <li class="list-group-item"><?= $value['food_type'] ?></li>
+                                        <li class="list-group-item"><?= $value['weigth'] ?></li>
+
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link">Card link</a>
-                                        <a href="#" class="card-link">Another link</a>
-                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -199,20 +208,21 @@ class Item
                             <?php foreach ($category->toy as $value) : ?>
 
                                 <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"></h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 class="card-title"><?= $value['name'] ?></h5>
+                                        <p class="card-text">
+                                            <?= $value['description'] ?>
+                                        </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">An item</li>
-                                        <li class="list-group-item">A second item</li>
-                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item"><?= $value['category'] ?></li>
+                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
+                                        <li class="list-group-item"><?= $value['brand'] ?></li>
+                                        <li class="list-group-item"><?= $value['price'] ?></li>
+                                        <li class="list-group-item"><?= $value['toy_type'] ?></li>
+
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link">Card link</a>
-                                        <a href="#" class="card-link">Another link</a>
-                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -226,24 +236,27 @@ class Item
                             <?php foreach ($category->leash as $value) : ?>
 
                                 <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"></h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 class="card-title"><?= $value['name'] ?></h5>
+                                        <p class="card-text">
+                                            <?= $value['description'] ?>
+                                        </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">An item</li>
-                                        <li class="list-group-item">A second item</li>
-                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item"><?= $value['category'] ?></li>
+                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
+                                        <li class="list-group-item"><?= $value['brand'] ?></li>
+                                        <li class="list-group-item"><?= $value['price'] ?></li>
+                                        <li class="list-group-item"><?= $value['leash_size'] ?></li>
+                                        <li class="list-group-item"><?= $value['leash_color'] ?></li>
+
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link">Card link</a>
-                                        <a href="#" class="card-link">Another link</a>
-                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </section>
+
 
                     <section id="kennel_mats">
                         <h4>kennel_mats</h4>
@@ -253,20 +266,23 @@ class Item
                             <?php foreach ($category->kennel_mats as $value) : ?>
 
                                 <div class="card" style="width: 18rem;">
-                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
                                     <div class="card-body">
-                                        <h5 class="card-title"></h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h5 class="card-title"><?= $value['name'] ?></h5>
+                                        <p class="card-text">
+                                            <?= $value['description'] ?>
+                                        </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">An item</li>
-                                        <li class="list-group-item">A second item</li>
-                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item"><?= $value['category'] ?></li>
+                                        <li class="list-group-item"><?= $value['quantity'] ?></li>
+                                        <li class="list-group-item"><?= $value['brand'] ?></li>
+                                        <li class="list-group-item"><?= $value['price'] ?></li>
+                                        <li class="list-group-item"><?= $value['kennel_dimension'] ?></li>
+                                        <li class="list-group-item"><?= $value['kennel_use'] ?></li>
+                                        <li class="list-group-item"><?= $value['kennel_color'] ?></li>
+
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link">Card link</a>
-                                        <a href="#" class="card-link">Another link</a>
-                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
