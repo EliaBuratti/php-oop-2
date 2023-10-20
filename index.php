@@ -11,6 +11,8 @@ class Product extends Product_type
 {
     public $category;
 
+
+
     public function __construct($_category)
     {
         $this->category = $_category;
@@ -24,70 +26,113 @@ $categories = [
 
 
 
+/* da sistemare!! */
 
+$cane->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova'));
+$cane->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
 
-$cane->setFood('crocchette', 40, new Item('immagine di copertina prodotto', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
-$cane->setLeash('cibo umido', 40, new Item('immagine di copertina prodotto', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$cane->setLeash('cibo umido', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$cane->setToy('cibo umido', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
 
+$cane->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
 
+$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao questa è una descrizione', 'prova', 'ciao', 'altra prova'));
+$gatto->setFood('crocchette', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
 
-var_dump($cane->food);
-var_dump($cane->leash);
+$gatto->setLeash('cibo umido', 40, new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+$gatto->setToy('cibo umido', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
 
-var_dump($categories);
+$gatto->setKennel_Mats('cibo umido', 'pino', 'ciao', new Item('https://picsum.photos/200/300', 'crocchetta', 'ciao', 'prova', 'ciao', 'altra prova'));
+
 
 
 
 class Product_type
 {
+
+
     public $food = [];
     public $toy = [];
     public $leash = [];
     public $kennel_mats = [];
 
 
+
+
+
+
     public function setFood($food_type, $weigth, Item $item)
     {
-        $food_product = [$food_type, $weigth, $item];
-        array_push($this->food, $food_product);
+        $foodValue = [
+            'food_type' => $food_type,
+            'weigth' => $weigth
+        ];
+        $food_info = $item->productArray;
+
+        $arrayFood = array_merge($food_info, $foodValue);
+
+        array_push($this->food, $arrayFood);
     }
 
     public function setToy($toy_type, Item $item)
     {
-        $toy_product = [$toy_type, $item];
-        array_push($this->toy, $toy_product);
+
+        $toyValue = ['toy_type' => $toy_type];
+        $toy_info = $item->productArray;
+
+        $arrayToy = array_merge($toy_info, $toyValue);
+
+        array_push($this->toy, $arrayToy);
     }
 
     public function setLeash($leash_size, $leash_color, Item $item)
     {
-        $leash_product = [$leash_size, $leash_color, $item];
-        array_push($this->leash, $leash_product);
+
+        $leashValue = [
+            'leash_size' => $leash_size,
+            'leash_color' => $leash_color
+        ];
+        $leash_info = $item->productArray;
+
+        $arrayLeash = array_merge($leash_info, $leashValue);
+
+        array_push($this->leash, $arrayLeash);
     }
 
     public function setKennel_Mats($kennel_dimension, $kennel_use, $kennel_color, Item $item)
     {
-        $Kennel_Mats_product = [$kennel_dimension, $kennel_use, $kennel_color, $item];
-        array_push($this->leash, $Kennel_Mats_product);
+
+
+        $kennelValue = [
+            'kennel_dimension' => $kennel_dimension,
+            'kennel_use' => $kennel_use,
+            'kennel_color' => $kennel_color
+        ];
+        $kennel_info = $item->productArray;
+
+        $arrayKennel = array_merge($kennel_info, $kennelValue);
+
+        array_push($this->kennel_mats, $arrayKennel);
     }
 }
 
 class Item
 {
-    public $cover;
-    public $name;
-    public $description;
-    public $category;
-    public $quantity;
-    public $brand;
+    public $productArray;
+
 
     public function __construct($_cover, $_name, $_description, $_category, $_quantity, $_brand)
     {
-        $this->cover = $_cover;
-        $this->name = $_name;
-        $this->description = $_description;
-        $this->category = $_category;
-        $this->quantity =  $_quantity;
-        $this->brand = $_brand;
+
+
+        $this->productArray = [
+            'cover' => $_cover,
+            'name' => $_name,
+            'description' => $_description,
+            'category' => $_category,
+            'quantity' => $_quantity,
+            'brand' => $_brand
+        ];
     }
 }
 
@@ -101,9 +146,144 @@ class Item
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Store</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 
 <body>
+
+    <div class="container">
+        <h1>benvenuto nel pet store</h1>
+
+        <div class="row">
+
+            <?php foreach ($categories as $category) : ?>
+                <section class="animal ">
+                    <h3><?= $category->category ?></h3>
+
+
+                    <section id="food">
+                        <h4>Food</h4>
+
+                        <div class="eb_cards row gap-2">
+
+                            <?php foreach ($category->food as $value) : ?>
+
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+
+                    <section id="toy">
+                        <h4>toy</h4>
+
+                        <div class="eb_cards row gap-2">
+
+                            <?php foreach ($category->toy as $value) : ?>
+
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+
+                    <section id="Leash">
+                        <h4>Leash</h4>
+
+                        <div class="eb_cards row gap-2">
+
+                            <?php foreach ($category->leash as $value) : ?>
+
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+
+                    <section id="kennel_mats">
+                        <h4>kennel_mats</h4>
+
+                        <div class="eb_cards row gap-2">
+
+                            <?php foreach ($category->kennel_mats as $value) : ?>
+
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<?= $value['cover'] ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+
+                </section>
+
+            <?php endforeach; ?>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- bootsrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
 
