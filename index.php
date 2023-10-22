@@ -36,32 +36,39 @@ require ROOT . DS . 'models' . DS . 'Animal.php';
 
 <body>
 
-    <div class="container">
-        <h1>benvenuto nel pet store</h1>
+    <header>
+        <?php require ROOT . DS . 'layout' . DS . 'header.php'; ?>
+    </header>
 
-        <div class="row">
-
-            <?php foreach ($categories as $category) : ?>
-                <section class="animal ">
-                    <h3>Tipologia : <?= $category->category ?></h3>
+    <main>
 
 
-                    <?php require ROOT . DS . 'layout' . DS . 'Food.php'; ?>
+        <div class="container">
+            <h1>benvenuto nel pet store</h1>
 
-                    <?php require ROOT . DS . 'layout' . DS . 'Toys.php'; ?>
+            <div class="row">
 
-                    <?php require ROOT . DS . 'layout' . DS . 'Leash.php'; ?>
+                <?php foreach ($categories as $category) : ?>
+                    <section class="animal ">
+                        <h3>Tipologia : <?= $category->category ?></h3>
 
-                    <?php require ROOT . DS . 'layout' . DS . 'Kennel_Mats.php'; ?>
+                        <?php require ROOT . DS . 'layout' . DS . 'Food.php'; ?>
 
-                </section>
+                        <?php require ROOT . DS . 'layout' . DS . 'Toys.php'; ?>
 
-            <?php endforeach; ?>
+                        <?php require ROOT . DS . 'layout' . DS . 'Leash.php'; ?>
+
+                        <?php require ROOT . DS . 'layout' . DS . 'Kennel_Mats.php'; ?>
+
+                    </section>
+                <?php endforeach; ?>
+
+            </div>
 
         </div>
 
+    </main>
 
-    </div>
 
 
     <!-- bootsrap -->

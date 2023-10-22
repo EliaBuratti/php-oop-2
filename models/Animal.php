@@ -1,8 +1,8 @@
 <?php
 
 $categories = [
-    $cane = new Product('Cane'),
-    $gatto = new Product('Gatto'),
+    $dog = new Product('Cane'),
+    $cat = new Product('Gatto'),
 ];
 
 
