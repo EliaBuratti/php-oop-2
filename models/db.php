@@ -5,18 +5,49 @@
 // setLeash =  $leash_size, 'leash_color'
 // setKennel_Mats = 'kennel_dimension', 'kennel_use', 'kennel_color'
 
-$dog->setToy(
-    'gommoso',
-    new Item(
-        'https://picsum.photos/300/300',    //    $_cover,
-        'pallina',                          //    $_name,
-        'questa è una pallina per cani',    //    $_description,
-        'gioco per cani',                   //    $_category,
-        500,                                //    $_quantity,
-        'Kong',                             //    $_brand,
-        16.99                               //    $_price
-    )
-);
+
+try {  // con prezzo sbagliato(stringa)
+    $dog->setToy(
+        'gommoso',
+        new Item(
+            'https://picsum.photos/300/300',    //    $_cover,
+            'pallina',                          //    $_name,
+            'questa è una pallina per cani',    //    $_description,'questa è una pallina per cani'
+            'gioco per cani',                   //    $_category,
+            500,                                //    $_quantity,
+            'Kong',                             //    $_brand,
+            'sedici e novantanove'             //    $_price
+        )
+    );
+} catch (Exception $error) {
+    echo $error->getMessage();
+    echo '<br>';
+    //echo $error->getFile();
+    //echo '<hr>';
+    echo $error->getTraceAsString();
+    echo '<br>';
+    //echo $error;
+}
+
+try {  // con nome sbagliato(numero)
+    $dog->setToy(
+        'gommoso',
+        new Item(
+            'https://picsum.photos/300/300',    //    $_cover,
+            1569,                               //    $_name, 'pallina'
+            'questa è una pallina per cani',    //    $_description,'questa è una pallina per cani'
+            'gioco per cani',                   //    $_category,
+            500,                                //    $_quantity,
+            'Kong',                             //    $_brand,
+            16.99                               //    $_price
+        )
+    );
+} catch (Exception $error) {
+    echo '<hr>';
+    echo $error->getMessage();
+    echo '<br>';
+    echo $error->getTraceAsString();
+}
 
 
 $dog->setFood('crocchette per cane piccolo', 1.5, new Item('https://picsum.photos/300/300', 'crocchetta', 'Queste crocchette sono adatte per i bassotti', 'cibo per cani', '300', 'purina', 20.56));

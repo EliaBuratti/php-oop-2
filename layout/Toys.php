@@ -18,7 +18,7 @@
                     <li class="list-group-item">Quantità disponibile: <?= $value['quantity'] ?> Pz.</li>
                     <li class="list-group-item">Brand: <?= $value['brand'] ?></li>
                     <li class="list-group-item">Prezzo: <?= $value['price'] ?> €</li>
-                    <li class="list-group-item">Tipo di gioco<?= $value['toy_type'] ?></li>
+                    <li class="list-group-item">Tipo di gioco: <?= $value['toy_type'] ?></li>
 
                 </ul>
             </div>

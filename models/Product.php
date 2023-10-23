@@ -1,5 +1,7 @@
 <?php
 
+require ROOT . DS . 'trait_exception' . DS . 'Exception.php';
+
 
 class Product extends Product_type
 {
@@ -76,41 +78,5 @@ class Product_type
         $arrayKennel = array_merge($kennel_info, $kennelValue);
 
         array_push($this->kennel_mats, $arrayKennel);
-    }
-}
-
-/**
- * this class generated an array of all input
- * 
- * @param string $_cover path of picture to show
- * @param string $_name name of item
- * @param string $_description the description of item
- * @param string $_category witch category of item appertain 
- * @param int $_quantity number of item which still are available
- * @param string $_brand brand of item
- * @param float $_price price of one item
- * 
- * @return array
-
- */
-class Item
-{
-    use getter;
-    protected $productArray;
-
-
-    public function __construct(string $_cover, string $_name, string $_description, string $_category, int $_quantity, string $_brand, float $_price)
-    {
-
-
-        $this->productArray = [
-            'cover' => $_cover,
-            'name' => $_name,
-            'description' => $_description,
-            'category' => $_category,
-            'quantity' => $_quantity,
-            'brand' => $_brand,
-            'price' => $_price,
-        ];
     }
 }
