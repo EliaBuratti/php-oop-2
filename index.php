@@ -11,7 +11,7 @@ organizzate il progetto come visto stamattina a lezione usando varie sottocartel
 
 define('ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
-
+require ROOT . DS . 'trait_exception' . DS . 'Trait.php';
 require ROOT . DS . 'models' . DS . 'Product.php';
 require ROOT . DS . 'models' . DS . 'Animal.php';
 

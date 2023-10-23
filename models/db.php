@@ -27,7 +27,6 @@ $dog->setKennel_Mats('150 x 50x 100 cm', 'esterno', 'verde', new Item('https://p
 
 
 
-
 $cat->setFood('crocchette per gatti intolleranti', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'Queste crocchette sono adatte per i gatti con intolleranze', 'cibo per gatti', '300', 'purina', 25.00));
 $cat->setFood('crocchette di pesce', 40, new Item('https://picsum.photos/300/300', 'crocchetta', 'Queste crocchette sono a base di pesce', 'cibo per gatti', '300', 'purina', 25.00));
 

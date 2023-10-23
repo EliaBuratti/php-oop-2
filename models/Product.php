@@ -1,5 +1,6 @@
 <?php
 
+
 class Product extends Product_type
 {
     public $category;
@@ -22,13 +23,14 @@ class Product_type
     public $leash = [];
     public $kennel_mats = [];
 
+
     public function setFood($food_type, $weigth, Item $item)
     {
         $foodValue = [
             'food_type' => $food_type,
             'weigth' => $weigth
         ];
-        $food_info = $item->productArray;
+        $food_info = $item->getArray();
 
         $arrayFood = array_merge($food_info, $foodValue);
 
@@ -39,7 +41,7 @@ class Product_type
     {
 
         $toyValue = ['toy_type' => $toy_type];
-        $toy_info = $item->productArray;
+        $toy_info = $item->getArray();
 
         $arrayToy = array_merge($toy_info, $toyValue);
 
@@ -53,7 +55,7 @@ class Product_type
             'leash_size' => $leash_size,
             'leash_color' => $leash_color
         ];
-        $leash_info = $item->productArray;
+        $leash_info = $item->getArray();
 
         $arrayLeash = array_merge($leash_info, $leashValue);
 
@@ -69,7 +71,7 @@ class Product_type
             'kennel_use' => $kennel_use,
             'kennel_color' => $kennel_color
         ];
-        $kennel_info = $item->productArray;
+        $kennel_info = $item->getArray();
 
         $arrayKennel = array_merge($kennel_info, $kennelValue);
 
@@ -77,12 +79,27 @@ class Product_type
     }
 }
 
+/**
+ * this class generated an array of all input
+ * 
+ * @param string $_cover path of picture to show
+ * @param string $_name name of item
+ * @param string $_description the description of item
+ * @param string $_category witch category of item appertain 
+ * @param int $_quantity number of item which still are available
+ * @param string $_brand brand of item
+ * @param float $_price price of one item
+ * 
+ * @return array
+
+ */
 class Item
 {
-    public $productArray;
+    use getter;
+    protected $productArray;
 
 
-    public function __construct($_cover, $_name, $_description, $_category, $_quantity, $_brand, $_price)
+    public function __construct(string $_cover, string $_name, string $_description, string $_category, int $_quantity, string $_brand, float $_price)
     {
 
 
