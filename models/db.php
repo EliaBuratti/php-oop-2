@@ -34,4 +34,4 @@ $cat->setFood('crocchette di pesce', 40, new Item('https://picsum.photos/300/300
 $cat->setLeash('L, Xl', 'rosso, giallo, verde', new Item('https://picsum.photos/300/300', 'collare per gatti', 'questo collare aiuta a mantenere il controllo del tuo gatto', 'collari', '10', 'K9', 26.50));
 $cat->setToy('tiragraffi per gatti', new Item('https://picsum.photos/300/300', 'tiragraffi', 'questo è un tiragraffi per gatti', 'tiragraffi', '15', 'nessuna', 18));
 
-$dog->setKennel_Mats('150 x 50x 100 cm', 'esterno', 'giallo', new Item('https://picsum.photos/300/300', 'cuccia per gatti', 'cuccia per gatti da esterno', 'cuccia', '2', 'nessuno', 110.00));
+$cat->setKennel_Mats('150 x 50x 100 cm', 'esterno', 'giallo', new Item('https://picsum.photos/300/300', 'cuccia per gatti', 'cuccia per gatti da esterno', 'cuccia', '2', 'nessuno', 110.00));

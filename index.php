@@ -37,14 +37,16 @@ require ROOT . DS . 'models' . DS . 'Animal.php';
 <body>
 
     <header>
-        <?php require ROOT . DS . 'layout' . DS . 'header.php'; ?>
+        <div class="container">
+            <?php require ROOT . DS . 'layout' . DS . 'header.php'; ?>
+        </div>
     </header>
 
     <main>
 
 
         <div class="container">
-            <h1>benvenuto nel pet store</h1>
+            <h1>Benvenuto nel pet store</h1>
 
             <div class="row">
 
@@ -68,6 +70,11 @@ require ROOT . DS . 'models' . DS . 'Animal.php';
         </div>
 
     </main>
+
+    <footer>
+        <?php require ROOT . DS . 'layout' . DS . 'footer.php'; ?>
+
+    </footer>
 
 
 

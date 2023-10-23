@@ -5,8 +5,8 @@
 
         <?php foreach ($category->kennel_mats as $value) : ?>
 
-            <div class="card" style="width: 18rem;">
-                <img src="<?= $value['cover'] ?>" class="card-img-top" alt="<?= $value['name'] ?>">
+            <div class="card p-3" style="width: 18rem;">
+                <img src="<?= $value['cover'] ?>" class="rounded-3" alt="<?= $value['name'] ?>">
                 <div class="card-body">
                     <h5 class="card-title"><?= $value['name'] ?></h5>
                     <p class="card-text">
