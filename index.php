@@ -37,9 +37,9 @@ require ROOT . DS . 'models' . DS . 'Animal.php';
 <body>
 
     <header>
-        <div class="container">
-            <?php require ROOT . DS . 'layout' . DS . 'header.php'; ?>
-        </div>
+
+        <?php require ROOT . DS . 'layout' . DS . 'header.php'; ?>
+
     </header>
 
     <main>
